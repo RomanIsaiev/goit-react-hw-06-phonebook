@@ -4,9 +4,7 @@ import { useSelector } from 'react-redux';
 import { getContacts, getFilter } from 'redux/selectors';
 
 const getVisibleContacts = (contacts, nameFilter) => {
-  console.log(contacts);
   return contacts.filter(item => {
-    console.log(item.name);
     const hasContact = item.name
       .toLowerCase()
       .includes(nameFilter.toLowerCase());
