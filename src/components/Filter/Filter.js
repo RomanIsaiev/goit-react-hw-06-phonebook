@@ -1,9 +1,17 @@
 import { nanoid } from 'nanoid';
 
 import { FilterContainer, FilterLabel, FilterInput } from './Filter.styled';
+import { useDispatch } from 'react-redux';
+import { contactsFilter } from 'redux/contactsSlice';
 
-export const Filter = ({ filter, onUpdateName }) => {
+export const Filter = () => {
   const filterInput = nanoid();
+  const dispatch = useDispatch();
+
+  const handleFilterChange = filter => {
+    return dispatch(contactsFilter(filter));
+  };
+
   return (
     <FilterContainer>
       <FilterLabel htmlFor={filterInput}>
@@ -11,8 +19,7 @@ export const Filter = ({ filter, onUpdateName }) => {
         <FilterInput
           type="text"
           id={filterInput}
-          value={filter}
-          onChange={event => onUpdateName(event.target.value)}
+          onChange={event => handleFilterChange(event.target.value)}
         ></FilterInput>
       </FilterLabel>
     </FilterContainer>
